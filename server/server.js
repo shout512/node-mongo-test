@@ -8,6 +8,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var app = express();
+var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -52,8 +53,8 @@ if (!todo) {
 });
 
 
-app.listen(3000, () => {
-  console.log('Up and running on port 3000');
+app.listen(port, () => {
+  console.log(`Up and running on port "${port}"`);
 });
 
 module.exports = {app};
