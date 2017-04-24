@@ -1,6 +1,7 @@
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
+var {Parse} = require('./models/parse');
 const {ObjectID} = require('mongodb');
 
 
@@ -22,6 +23,18 @@ app.post('/todos', (req,res) => {
   }, (e) => {
     res.status(400).send(e);
   });
+});
+
+app.post('/parseObject', (req, res) => {
+  var parse = new Parse({
+    parseObject: req.body
+  });
+
+  parse.save().then((parseObject) => {
+    res.send(parseObject);
+  }, (e) => {
+    res.status(400).send();
+  })
 });
 
 app.get('/todos', (req, res) => {
